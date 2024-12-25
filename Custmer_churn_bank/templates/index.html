@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Interactive Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6b8eff, #8ec2ff);
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-container img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        label {
+            width: 30%;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input, button {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function(event) {
+                const requiredFields = form.querySelectorAll("[required]");
+                let valid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        valid = false;
+                        const errorMessage = field.nextElementSibling;
+                        errorMessage.textContent = "This field is required.";
+                    } else {
+                        field.nextElementSibling.textContent = "";
+                    }
+                });
+
+                if (!valid) {
+                    event.preventDefault();
+                }
+            });
+
+            form.querySelectorAll("input").forEach(field => {
+                field.addEventListener("input", function() {
+                    if (field.value.trim()) {
+                        field.nextElementSibling.textContent = "";
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <img src="https://via.placeholder.com/100" alt="Logo">
+        <h1>Interactive Form</h1>
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <label for="field1">Field 1:</label>
+                <input type="text" id="field1" name="field1" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field2">Field 2:</label>
+                <input type="text" id="field2" name="field2">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field3">Field 3:</label>
+                <input type="text" id="field3" name="field3">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field4">Field 4:</label>
+                <input type="text" id="field4" name="field4">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field5">Field 5:</label>
+                <input type="text" id="field5" name="field5">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field6">Field 6:</label>
+                <input type="text" id="field6" name="field6">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field7">Field 7:</label>
+                <input type="text" id="field7" name="field7">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field8">Field 8:</label>
+                <input type="text" id="field8" name="field8">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field9">Field 9:</label>
+                <input type="text" id="field9" name="field9">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field10">Field 10:</label>
+                <input type="text" id="field10" name="field10">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="field11">Field 11:</label>
+                <input type="text" id="field11" name="field11">
+                <div class="error-message"></div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% if prediction %}
+<div class="message">{{ prediction }}</div>
+{% endif %}
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+</body>
+</html>
